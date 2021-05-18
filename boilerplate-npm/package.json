@@ -1,9 +1,13 @@
 {
 	"name": "fcc-learn-npm-package-json",
-  "author": "James Lo",
-  "keywords":["freecodecamp", "keywords", "SEO"],
-  "license" : "MIT",
-  "version":"1.0.0",
+	"author": "James Lo",
+	"keywords": [
+		"freecodecamp",
+		"keywords",
+		"SEO"
+	],
+	"license": "MIT",
+	"version": "1.0.0",
 	"description": "a project that does something awesome",
 	"dependencies": {
 		"express": "^4.14.0"
@@ -15,5 +19,5 @@
 	"repository": {
 		"type": "git",
 		"url": "https://idontknow/todo.git"
-	}	
+	}
 }
