@@ -30,3 +30,30 @@ app.get("/api/hello", function (req, res) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+//if the api endpoint is reached without an input of date string or unix timestamp, the program will produce the current timestamp and date in utc format
+app.get('/api', (req, res) =>{
+  res.json({"unix": Date.now(), "utc":Date()});
+});
+
+//when an input is specified
+app.get('/api/:date_string?', (req, res) =>{
+  var date_string = req.params.date_string;
+  if(!date_string.includes('-')){ //if the date_string includes '-', means its a iso 8601 date format
+    var timeStamp = parseInt(date_string);
+    res.json({
+      "unix":timeStamp,
+      "utc": new Date(timeStamp).toUTCString()
+    });
+  } else {
+    var dateObject = new Date(date_string);
+    if(dateObject.toString() === "Invalid Date"){
+      res.json({"error": "Invalid Date"});
+    } else {
+      res.json({
+        "unix": dateObject.valueOf(),
+        "utc": dateObject.toUTCString()
+      })
+    }
+  }
+});
