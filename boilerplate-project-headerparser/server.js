@@ -31,3 +31,15 @@ app.get("/api/hello", function (req, res) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+app.get('/api/whoami', (req, res) => {
+  var ipAddress = req.headers['x-forwarded-for'].split(',')[0];
+  var acceptedLanguage = req.headers['accept-language'];
+  var softwareInfo = req.headers['user-agent'];
+  
+  res.json({
+    "ipaddress": ipAddress,
+    "language": acceptedLanguage,
+    "software": softwareInfo
+  });
+});
